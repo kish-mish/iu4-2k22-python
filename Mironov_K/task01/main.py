@@ -5,12 +5,12 @@ import sys
 DICTIONARY = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 "
 
 
-def caesar_cipher(list_work: list, int_key: int) -> str:
-    int_i = 0
-    for item in list_work:
-        list_work[int_i] = DICTIONARY[(DICTIONARY.find(item) + int_key) % len(DICTIONARY)]
-        int_i += 1
-    return "".join(list_work)
+def caesar_cipher(str_work: str, int_key: int) -> str:
+    list_result = []
+    for item in str_work:
+        int_index = (DICTIONARY.find(item) + int_key) % len(DICTIONARY)
+        list_result.append(DICTIONARY[int_index])
+    return "".join(list_result)
 
 
 def main(args: list):
@@ -20,8 +20,7 @@ def main(args: list):
     elif args[1] != 'e':
         print("Invalid param1")
         sys.exit(-1)
-    print(caesar_cipher(list(args[2]), int_key))
-    sys.exit(0)
+    print(caesar_cipher(args[2], int_key))
 
 
 if __name__ == '__main__':
